@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+/* Sign-in overlay styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-in-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.sign-in-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+button[type="submit"], .btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover, .btn:hover {
+    background-color: #45a049;
+}
+
+button[type="submit"]:disabled, .btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #d32f2f;
+    background-color: #ffebee;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    display: none; /* Hidden by default */
+    text-align: center;
+}
+
+.error-message.show {
+    display: block !important; /* Show when has 'show' class */
+}
+
+.success-message {
+    color: #2e7d32;
+    background-color: #e8f5e9;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    display: none; /* Hidden by default */
+    text-align: center;
+}
+
+/* Main content styles */
+.main-content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.main-content h1 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+/* Homepage styles */
+.homepage {
+    text-align: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.homepage h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.auth-buttons {
+    margin: 2rem 0;
+}
+
+.auth-buttons .btn {
+    margin: 0 0.5rem;
+    max-width: 150px;
+}
+
+.home-sign-in-form {
+    max-width: 400px;
+    margin: 2rem auto;
+    text-align: left;
+}
+
+.home-sign-in-form h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Dashboard and protected content styles */
+.dashboard, .invoice-details, .protected-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+}
+
+/* Hidden class for overlay */
+.hidden {
+    display: none !important;
+}

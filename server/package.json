@@ -1,0 +1,20 @@
+{
+  "name": "fluxfinance-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun src/index.js",
+    "db:generate": "./node_modules/.bin/prisma generate",
+    "db:migrate": "./node_modules/.bin/prisma migrate dev",
+    "db:reset": "./node_modules/.bin/prisma migrate reset"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.0.0",
+    "bcryptjs": "^3.0.2",
+    "prisma": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "@types/bun": "latest"
+  }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FluxFinance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Sign-in overlay -->
+<div id="signInOverlay" class="overlay" data-testid="sign-in-form">
+  <div class="sign-in-container">
+    <h2>Sign In</h2>
+    <form id="signInForm">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                aria-label="Email address"
+        >
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                aria-label="Password"
+        >
+      </div>
+      <button type="submit">Sign In</button>
+      <div id="errorMessage" class="error-message" data-testid="error-message"></div>
+    </form>
+  </div>
+</div>
+
+<!-- Main content area -->
+<main id="mainContent" class="main-content">
+  <h1 id="pageTitle">Loading...</h1>
+  <div id="contentArea"></div>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

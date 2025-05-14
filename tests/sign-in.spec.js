@@ -14,9 +14,9 @@ test.describe('Sign In', () => {
 
         // Kontrolli, et sign-in vorm kuvatakse
         await expect(page.locator('[data-testid="sign-in-form"]')).toBeVisible();
-        await expect(page.locator('input[name="email"]')).toBeVisible();
-        await expect(page.locator('input[name="password"]')).toBeVisible();
-        await expect(page.locator('button[type="submit"]')).toBeVisible();
+        await expect(page.locator('#signInOverlay input[name="email"]')).toBeVisible();
+        await expect(page.locator('#signInOverlay input[name="password"]')).toBeVisible();
+        await expect(page.locator('#signInOverlay button[type="submit"]')).toBeVisible();
     });
 
     test('can enter email and password and submit form via AJAX', async ({ page }) => {
@@ -24,17 +24,17 @@ test.describe('Sign In', () => {
         await page.waitForLoadState('networkidle');
 
         // Täida email ja parool
-        await page.fill('input[name="email"]', 'test@example.com');
-        await page.fill('input[name="password"]', 'testpassword');
+        await page.fill('#signInOverlay input[name="email"]', 'test@example.com');
+        await page.fill('#signInOverlay input[name="password"]', 'testpassword');
 
         // Kontrolli, et submit nupp on aktiivne
-        await expect(page.locator('button[type="submit"]')).toBeEnabled();
+        await expect(page.locator('#signInOverlay button[type="submit"]')).toBeEnabled();
 
         // Jälgi AJAX päringut
         const responsePromise = page.waitForResponse('/api/sign-in');
 
         // Esita vorm
-        await page.click('button[type="submit"]');
+        await page.click('#signInOverlay button[type="submit"]');
 
         // Oota vastust
         const response = await responsePromise;
@@ -46,8 +46,8 @@ test.describe('Sign In', () => {
         await page.waitForLoadState('networkidle');
 
         // Sisesta vale aga kehtiv e-mail ja parool
-        await page.fill('input[name="email"]', 'wrong@example.com');
-        await page.fill('input[name="password"]', 'wrongpassword');
+        await page.fill('#signInOverlay input[name="email"]', 'wrong@example.com');
+        await page.fill('#signInOverlay input[name="password"]', 'wrongpassword');
 
         // Setup response listener ENNE klicki
         const responsePromise = page.waitForResponse(response =>
@@ -55,7 +55,7 @@ test.describe('Sign In', () => {
         );
 
         // Esita vorm
-        await page.click('button[type="submit"]');
+        await page.click('#signInOverlay button[type="submit"]');
 
         // Oota API vastust
         const response = await responsePromise;
@@ -88,23 +88,23 @@ test.describe('Sign In', () => {
         await page.goto('/invoices');
         await page.waitForLoadState('networkidle');
 
-        // Tab navigeerimine
+        // Tab navigeerimine - kasutan täpsemaid selectoreid
         await page.keyboard.press('Tab');
-        await expect(page.locator('input[name="email"]')).toBeFocused();
+        await expect(page.locator('#signInOverlay input[name="email"]')).toBeFocused();
 
         await page.keyboard.press('Tab');
-        await expect(page.locator('input[name="password"]')).toBeFocused();
+        await expect(page.locator('#signInOverlay input[name="password"]')).toBeFocused();
 
         await page.keyboard.press('Tab');
-        await expect(page.locator('button[type="submit"]')).toBeFocused();
+        await expect(page.locator('#signInOverlay button[type="submit"]')).toBeFocused();
 
         // Kontrolli label-eid
-        await expect(page.locator('label[for="email"]')).toBeVisible();
-        await expect(page.locator('label[for="password"]')).toBeVisible();
+        await expect(page.locator('#signInOverlay label[for="email"]')).toBeVisible();
+        await expect(page.locator('#signInOverlay label[for="password"]')).toBeVisible();
 
         // Kontrolli aria-label-eid või aria-describedby-d
-        await expect(page.locator('input[name="email"]')).toHaveAttribute('aria-label');
-        await expect(page.locator('input[name="password"]')).toHaveAttribute('aria-label');
+        await expect(page.locator('#signInOverlay input[name="email"]')).toHaveAttribute('aria-label');
+        await expect(page.locator('#signInOverlay input[name="password"]')).toHaveAttribute('aria-label');
     });
 
     test('successful sign-in refreshes page and shows protected content', async ({ page }) => {
@@ -121,11 +121,11 @@ test.describe('Sign In', () => {
         await page.waitForLoadState('networkidle');
 
         // Sisesta õiged andmed
-        await page.fill('input[name="email"]', 'test@example.com');
-        await page.fill('input[name="password"]', 'testpassword');
+        await page.fill('#signInOverlay input[name="email"]', 'test@example.com');
+        await page.fill('#signInOverlay input[name="password"]', 'testpassword');
 
         // Submit vorm
-        await page.click('button[type="submit"]');
+        await page.click('#signInOverlay button[type="submit"]');
 
         // Oota lehekülge värskendamist
         await page.waitForLoadState('networkidle');

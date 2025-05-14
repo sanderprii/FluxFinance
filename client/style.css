@@ -10,7 +10,7 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Sign-in overlay styles */
+/* Existing styles... (keep all existing overlay and form styles) */
 .overlay {
     position: fixed;
     top: 0;
@@ -50,7 +50,7 @@ body {
     font-weight: bold;
 }
 
-.form-group input {
+.form-group input, .form-group select {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #ddd;
@@ -58,7 +58,7 @@ body {
     font-size: 1rem;
 }
 
-.form-group input:focus {
+.form-group input:focus, .form-group select:focus {
     outline: none;
     border-color: #4CAF50;
     box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
@@ -91,12 +91,12 @@ button[type="submit"]:disabled, .btn:disabled {
     padding: 0.75rem;
     border-radius: 4px;
     margin-top: 1rem;
-    display: none; /* Hidden by default */
+    display: none;
     text-align: center;
 }
 
 .error-message.show {
-    display: block !important; /* Show when has 'show' class */
+    display: block !important;
 }
 
 .success-message {
@@ -105,7 +105,7 @@ button[type="submit"]:disabled, .btn:disabled {
     padding: 0.75rem;
     border-radius: 4px;
     margin-top: 1rem;
-    display: none; /* Hidden by default */
+    display: none;
     text-align: center;
 }
 
@@ -157,6 +157,34 @@ button[type="submit"]:disabled, .btn:disabled {
     color: #333;
 }
 
+/* Main navigation styles */
+.main-nav {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-link {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #333;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #f5f5f5;
+}
+
+.nav-link.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
 /* Dashboard and protected content styles */
 .dashboard, .invoice-details, .protected-content {
     background: white;
@@ -166,7 +194,138 @@ button[type="submit"]:disabled, .btn:disabled {
     margin-top: 1rem;
 }
 
+.dashboard-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.dashboard-actions .btn {
+    width: auto;
+    max-width: 200px;
+}
+
 /* Hidden class for overlay */
 .hidden {
     display: none !important;
+}
+
+/* Invoice modal styles */
+.invoice-modal-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.invoice-modal-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.calculation-display {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.modal-buttons button {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-buttons button[type="button"] {
+    background-color: #6c757d;
+    color: white;
+}
+
+.modal-buttons button[type="button"]:hover {
+    background-color: #5a6268;
+}
+
+/* Invoices page styles */
+.invoices-page {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.invoice-list {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.invoice-item {
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+}
+
+.invoice-item:last-child {
+    border-bottom: none;
+}
+
+.invoice-item:hover {
+    background-color: #f8f9fa;
+}
+
+.invoice-number {
+    font-weight: bold;
+    min-width: 120px;
+}
+
+.invoice-description {
+    flex: 1;
+    margin: 0 1rem;
+}
+
+.invoice-sum {
+    font-weight: bold;
+    color: #333;
+}
+
+.invoice-date {
+    color: #666;
+    font-size: 0.9rem;
+    min-width: 100px;
 }

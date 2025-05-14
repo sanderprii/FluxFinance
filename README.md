@@ -38,26 +38,6 @@ A simple financial application with authentication built using TDD (Test-Driven 
 - **JavaScript**: ES6+ with async/await
 - **Testing**: Playwright for E2E testing
 
-## Project Structure
-
-```
-fluxfinance/
-├── client/              # Frontend files
-│   ├── index.html       # Main HTML file
-│   ├── style.css        # CSS styles
-│   └── app.js           # JavaScript application logic
-├── server/              # Backend files
-│   ├── src/
-│   │   └── index.js     # Server implementation
-│   ├── prisma/
-│   │   └── schema.prisma # Database schema
-│   └── package.json     # Backend dependencies
-├── tests/               # E2E test suite
-│   ├── sign-in.spec.js  # Sign-in functionality tests
-│   ├── playwright.config.js # Playwright configuration
-│   └── package.json     # Test dependencies
-└── README.md            # This file
-```
 
 ## Getting Started
 
@@ -146,33 +126,6 @@ The application uses a simple authentication system:
 
 ## API Endpoints
 
-### POST `/api/sign-in`
-Sign in with email and password.
-
-**Request Body:**
-```json
-{
-  "email": "test@example.com",
-  "password": "password123"
-}
-```
-
-**Response (Success):**
-```json
-{
-  "success": true,
-  "token": "valid-token",
-  "userId": 1
-}
-```
-
-**Response (Error):**
-```json
-{
-  "success": false,
-  "message": "Email or password is incorrect"
-}
-```
 
 ## Routes
 
@@ -183,14 +136,6 @@ Sign in with email and password.
 
 ## Testing
 
-Tests are written in Playwright and cover:
-
-- ✅ Unauthenticated users see sign-in form on protected URLs
-- ✅ Email and password form submission via AJAX
-- ✅ Error messages for invalid credentials
-- ✅ Authenticated users can access protected content
-- ✅ Keyboard navigation and accessibility
-- ✅ Successful sign-in flow
 
 Run tests with:
 ```bash

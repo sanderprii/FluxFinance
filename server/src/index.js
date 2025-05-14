@@ -25,7 +25,6 @@ serve({
 
         // API routes
 
-
         if (url.pathname === "/api/sign-in" && request.method === "POST") {
             try {
                 const { email, password } = await request.json();
@@ -89,6 +88,89 @@ serve({
                         }
                     }
                 );
+            }
+        }
+
+        // Invoice API endpoints
+        if (url.pathname === "/api/invoices") {
+            if (request.method === "POST") {
+                try {
+                    const invoiceData = await request.json();
+                    console.log('Creating invoice:', invoiceData);
+
+                    // Calculate sum: (price * quantity) + VAT
+                    const subtotal = invoiceData.price * invoiceData.quantity;
+                    const vatAmount = subtotal * (invoiceData.vatPercentage / 100);
+                    const sum = subtotal + vatAmount;
+
+                    const invoice = await prisma.invoice.create({
+                        data: {
+                            date: invoiceData.date,
+                            description: invoiceData.description,
+                            quantity: invoiceData.quantity,
+                            paymentMethod: invoiceData.paymentMethod,
+                            currency: invoiceData.currency,
+                            invoiceNumber: invoiceData.invoiceNumber,
+                            vatPercentage: invoiceData.vatPercentage,
+                            price: invoiceData.price,
+                            sum: sum
+                        }
+                    });
+
+                    console.log('Invoice created:', invoice);
+
+                    return new Response(
+                        JSON.stringify({ success: true, invoice }),
+                        {
+                            status: 201,
+                            headers: {
+                                ...headers,
+                                "Content-Type": "application/json"
+                            }
+                        }
+                    );
+                } catch (error) {
+                    console.error('Error creating invoice:', error);
+                    return new Response(
+                        JSON.stringify({ success: false, message: "Error creating invoice" }),
+                        {
+                            status: 500,
+                            headers: {
+                                ...headers,
+                                "Content-Type": "application/json"
+                            }
+                        }
+                    );
+                }
+            } else if (request.method === "GET") {
+                try {
+                    const invoices = await prisma.invoice.findMany({
+                        orderBy: { createdAt: 'desc' }
+                    });
+
+                    return new Response(
+                        JSON.stringify({ success: true, invoices }),
+                        {
+                            status: 200,
+                            headers: {
+                                ...headers,
+                                "Content-Type": "application/json"
+                            }
+                        }
+                    );
+                } catch (error) {
+                    console.error('Error fetching invoices:', error);
+                    return new Response(
+                        JSON.stringify({ success: false, message: "Error fetching invoices" }),
+                        {
+                            status: 500,
+                            headers: {
+                                ...headers,
+                                "Content-Type": "application/json"
+                            }
+                        }
+                    );
+                }
             }
         }
 
